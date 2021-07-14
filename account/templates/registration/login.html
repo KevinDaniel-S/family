@@ -6,11 +6,19 @@
 {% block content %}
 
   <h1>Log-in</h1>
-  <p>Please, use the following form to log-in:</p>
-  <form method="post" novalidate>
+  {% if form.errors %}
+    <p>Your username and password didn't match.
+      Please try again</p>
+  {% else %}
+    <p>Please, use the following form to log-in:</p>
+  {% endif %}
+  <form action="{% url 'login' %}" method="post" novalidate>
     {% csrf_token %}
     {% bootstrap_form_errors form %}
     {% bootstrap_form form %}
+    
+    <input type="hidden" name="next" value="{{ next }}" />
+
     {% buttons submit='Log-in' reset="Cancel" %}{% endbuttons %}
   </form>
 {% endblock %}
