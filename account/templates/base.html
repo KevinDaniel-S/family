@@ -9,9 +9,30 @@
   <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark"> 
+  <nav class="navbar navbar-expand navbar-dark bg-dark"> 
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Family app</a>
+      {% if request.user.is_authenticated %}
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link {% if section == "dashboard" %}text-success{% endif %}" href="#">My dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if section == "tasks" %}text-success{% endif %}" href="#">Tasks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if section == "family" %}text-success{% endif %}" href="#">Family</a>
+          </li>
+        </ul>
+      {% endif %}
+      <div class="navbar-nav">
+        {% if request.user.is_authenticated %}
+          Hello {{ request.user.first_name }},
+          <a class="nav-link" href="{% url "logout" %}">Logout</a>
+        {% else %}
+          <a class="nav-link" href="{% url "login"%}">Log-in</a>
+        {% endif %}
+      </div>
     </div>
   </nav>
   <div class="container">
