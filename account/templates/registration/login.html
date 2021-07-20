@@ -6,16 +6,10 @@
 {% block content %}
 
   <h1>Log-in</h1>
-  {% if form.errors %}
-    <p>Your username and password didn't match.
-      Please try again</p>
-  {% else %}
-    <p>Please, use the following form to log-in. If you don't have
-       an account <a href="{% url "register" %}">register here</a></p>
-  {% endif %}
+   <p>Please, use the following form to log-in. If you don't have
+      an account <a href="{% url "register" %}">register here</a></p>
   <form action="{% url 'login' %}" method="post" novalidate>
     {% csrf_token %}
-    {% bootstrap_form_errors form %}
     {% bootstrap_form form %}
     
     <input type="hidden" name="next" value="{{ next }}" />
