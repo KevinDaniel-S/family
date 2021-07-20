@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Profile, Family, Membership
+from .models import Profile
+from household.models import Membership
 
 class MembershipInline(admin.TabularInline):
     model = Membership
@@ -9,8 +10,3 @@ class MembershipInline(admin.TabularInline):
 class ProfileAdmin(admin.ModelAdmin):
     inlines = [MembershipInline]
     list_display = ['user', 'date_of_birth']
-
-@admin.register(Family)
-class FamilyAdmin(admin.ModelAdmin):
-    inlines = [MembershipInline]
-    list_display = ['name']
