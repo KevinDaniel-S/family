@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Family dashboard{% endblock %}
+
+{% block content %}
+
+  {% if family %}
+    {{ family }}
+
+  {% else %} 
+    You don't have a family yet register one or wait until someone invite you to join
+
+  {% endif %}
+
+{% endblock %}
