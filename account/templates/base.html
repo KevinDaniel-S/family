@@ -21,7 +21,8 @@
             <a class="nav-link {% if section == "tasks" %}text-success{% endif %}" href="#">Tasks</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if section == "family" %}text-success{% endif %}" href="#">Family</a>
+            <a class="nav-link {% if section == "family" %}text-success{% endif %}" 
+               href="{% url "family" %}">Family</a>
           </li>
         </ul>
       {% endif %}
@@ -30,7 +31,8 @@
           Hello {{ request.user.first_name }},
           <a class="nav-link" href="{% url "logout" %}">Logout</a>
         {% else %}
-          <a class="nav-link" href="{% url "login"%}">Log-in</a>
+          <a class="nav-link" href="{% url "register" %}">Register</a>
+          <a class="nav-link" href="{% url "login" %}">Log-in</a>
         {% endif %}
       </div>
     </div>
