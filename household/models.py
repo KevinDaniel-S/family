@@ -19,7 +19,11 @@ class Membership(models.Model):
 
     class Meta:
         db_table = "account_membership"
+        ordering = ['-command_level']
+        constraints = [
+                models.UniqueConstraint(fields=['member', 'family'], name='unique_member')
+                ]
 
-    member = models.OneToOneField(Profile, on_delete=models.CASCADE)
+    member = models.ForeignKey(Profile, on_delete=models.CASCADE)
     family = models.ForeignKey(Family, on_delete=models.CASCADE)
     command_level = models.IntegerField(choices=CommandLevel.choices, default=CommandLevel.MEMBER)
