@@ -1,15 +1,24 @@
 {% extends "base.html" %}
+{% load membership %}
 
 {% block title %}Family dashboard{% endblock %}
 
 {% block content %}
 
-  {% if family %}
-    {{ family }}
-
-  {% else %} 
-    You don't have a family yet register one or wait until someone invite you to join
-
-  {% endif %}
+  <h1>Families dashboard</h1>
+  {% for family in families %}
+    <h3>Family: {{ family }}</h3>
+    <h5>Members:</h5>
+    <ul>
+    {% for member in family.members.all %}
+      <li>
+        {{ member.user.first_name }} is a 
+        {{ member | level_name:family }}
+      </li>
+    {% endfor %}
+    </ul>
+  {% empty %}
+    You don't have a family
+  {% endfor %}
 
 {% endblock %}
