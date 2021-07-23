@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.family, name='family'),
     path('family/', include([
         path('', views.family, name='family'),
+        path('register/', views.register, name='register family'),
     ])),
 ]
