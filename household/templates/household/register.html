@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+
+{% block title %} Register family {% endblock %}
+
+{% block content %}
+
+<h1>Register a new family</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  {% bootstrap_form family_form %}
+  {% buttons submit="Register" %}{% endbuttons %}
+</form>
+{% endblock %}
+
